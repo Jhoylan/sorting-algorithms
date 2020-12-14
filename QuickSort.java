@@ -5,49 +5,47 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class QuickSort {
+public class QuickSort extends SortingAlgorithm{
 	
-	List<Integer> array;
-	
-	public QuickSort() {
-		array = new ArrayList<>();
-	}
-	
-	public List<Integer> partition(List<Integer> list) {
+	public List<Integer> sort(List<Integer> list) {
 		
 		int half = Math.floorDiv(list.size(), 2);
-		
-		System.out.println("The half is : " + half);
 		
 		Collections.swap(list, half, list.size() - 1);
 		
 		int pivot = list.size() - 1;
 		
-		System.out.println("The pivot is : " + list.get(pivot));
-		
 		int itemFromLeft = 0, itemFromRight = 0;
+		boolean flagLeft = false, flagRight = false;
 		
 		for(int i = 0; i < list.size(); i++) {
-			for(int  j = 0; j < list.size(); j++) {
+			for(int  j = 0; j < list.size() - 1; j++) {
 				if(list.get(j) > list.get(pivot)) {
 					itemFromLeft = j;
+					flagLeft = true;
 					break;
 				}
 			}
 			
-			for(int k = list.size() - 2; k > 0; k--) {
+			for(int k = list.size() - 2; k > -1; k--) {
 				if(list.get(k) < list.get(pivot)) {
 					itemFromRight = k;
+					flagRight = true;
 					break;
 				}
 			}
 						
-			if(itemFromLeft < itemFromRight) {
+			if(itemFromLeft  < itemFromRight && flagLeft && flagRight) {
 				Collections.swap(list, itemFromLeft, itemFromRight);
-			}else if(itemFromLeft > itemFromRight) {
+			}
+			
+			if(itemFromLeft > itemFromRight) {
 				Collections.swap(list, itemFromLeft, pivot);
 				break;
-			}else {
+			}
+			
+			if((itemFromLeft == itemFromRight) && flagLeft && !flagRight) {
+				Collections.swap(list, itemFromLeft, pivot);
 				break;
 			}
 						
@@ -55,7 +53,11 @@ public class QuickSort {
 		
 		List<Integer> lowerList = new ArrayList<>();
 		List<Integer> upperList = new ArrayList<>();
-				
+		
+		if(!flagLeft) {
+			itemFromLeft = list.size() - 1;
+		}
+		
 		for(int i = 0; i < list.size(); i++) {
 			if(i < itemFromLeft) {
 				lowerList.add(list.get(i));
@@ -66,18 +68,12 @@ public class QuickSort {
 			}
 		}
 		
-		System.out.println("This is the upper list");
-		System.out.println(upperList);
-		
-		System.out.println("This is the lower list");
-		System.out.println(lowerList);
-		
 		if(upperList.size() > 1) {
-			upperList = this.partition(upperList);
+			upperList = this.sort(upperList);
 		}
 		
 		if(lowerList.size() > 1) {
-			lowerList = this.partition(lowerList);
+			lowerList = this.sort(lowerList);
 		}
 		
 		for(int i = 0; i < lowerList.size(); i++) {
@@ -85,27 +81,12 @@ public class QuickSort {
 		}
 		
 		for(int i = 0; i < upperList.size(); i++) {
-			list.set(itemFromLeft + 1, upperList.get(i));
+			list.set(itemFromLeft + 1 + i, upperList.get(i));
 		}
 		
 		return list;
 	}
 	
-	public void populating(int size) {
-		Random random = new Random(); 
-		int randomNuber;
-		
-		for(int i = 0; i < size; i++) {
-			array.add(randomNuber = random.nextInt(100));
-		}
-		
-	}
 	
-	public void showArray() {
-		System.out.println(array);
-	}
 	
-	public List<Integer> getArray(){
-		return this.array;
-	}
 }
