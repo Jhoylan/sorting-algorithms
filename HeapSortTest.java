@@ -2,24 +2,20 @@ package sortingAlgorithms;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class QuickSortTest {
+class HeapSortTest {
 
 	@Test
 	void sortTest() {
-		QuickSort array = new QuickSort();
-		array.populating(100000);
-		array.sort(array.getArray());	
-				
+		HeapSort array = new HeapSort();
+		array.populating(10000);
+		array.sort(array.getArray());
+		
 		Assertions.assertEquals(true, array.isCorrect());
-		
-		
-		
 	}
 
 }
