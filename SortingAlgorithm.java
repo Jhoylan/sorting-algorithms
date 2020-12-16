@@ -19,7 +19,7 @@ public abstract class SortingAlgorithm {
 		int randomNuber;
 		
 		for(int i = 0; i < size; i++) {
-			array.add(randomNuber = random.nextInt(101));
+			array.add(randomNuber = random.nextInt(100) + 1);
 		}
 		
 	}
