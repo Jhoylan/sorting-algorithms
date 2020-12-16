@@ -13,7 +13,7 @@ class QuickSortTest {
 	@Test
 	void sortTest() {
 		QuickSort array = new QuickSort();
-		array.populating(100000);
+		array.populating(100, 1, 100);
 		array.sort(array.getArray());	
 				
 		Assertions.assertEquals(true, array.isCorrect());

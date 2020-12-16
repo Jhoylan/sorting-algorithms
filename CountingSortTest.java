@@ -10,9 +10,11 @@ class CountingSortTest {
 	@Test
 	void sortTest() {
 		CountingSort array = new CountingSort();
-		array.populating(10000000);
+		array.setMaximum(100);
+		array.populating(1000, 0, 100);
 		array.sort(array.getArray());
-
+		
+		
 		Assertions.assertEquals(true, array.isCorrect());
 
 	}

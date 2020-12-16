@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class SortingAlgorithm {
-	List<Integer> array;
+	public List<Integer> array;
 	
 	public SortingAlgorithm() {
 		array = new ArrayList<>();
@@ -13,13 +13,14 @@ public abstract class SortingAlgorithm {
 	
 	public abstract List<Integer> sort(List<Integer> list);
 	
-	public void populating(int size) {
+	public void populating(int quantity, int minimum, int maximum) {
 		Random random = new Random(); 
+		int range = maximum - minimum;
 		
 		int randomNuber;
 		
-		for(int i = 0; i < size; i++) {
-			array.add(randomNuber = random.nextInt(100) + 1);
+		for(int i = 0; i < quantity; i++) {
+			array.add(randomNuber = minimum + random.nextInt(range + 1));
 		}
 		
 	}

@@ -6,14 +6,14 @@ import java.util.List;
 public class CountingSort extends SortingAlgorithm{
 	private List<Integer> count;
 	private List<Integer> sortedList;
-	
+	private int maximum;
 	
 	@Override
 	public List<Integer> sort(List<Integer> list) {
 		this.count = new ArrayList<>();
 		this.sortedList = new ArrayList<>();
 		
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < maximum + 1; i++){
 			this.count.add(0);
 		}
 		
@@ -23,7 +23,7 @@ public class CountingSort extends SortingAlgorithm{
 		
 		//counting
 		for(int i = 0; i < list.size(); i++) {
-			this.count.set(list.get(i) - 1, count.get(list.get(i) - 1) + 1);
+			this.count.set(list.get(i), count.get(list.get(i)) + 1);
 		}
 		
 		//accumulating
@@ -33,9 +33,9 @@ public class CountingSort extends SortingAlgorithm{
 		
 		//sorting
 		for(int i = list.size() - 1; i > -1; i--) {
-			int correctPosistion = count.get(list.get(i) - 1) - 1;
+			int correctPosistion = count.get(list.get(i)) - 1;
 			int element = list.get(i);
-			int elementPosition = list.get(i) - 1;
+			int elementPosition = list.get(i);
 			
 			this.sortedList.set(correctPosistion, element);			
 			this.count.set(elementPosition, this.count.get(elementPosition) - 1);
@@ -44,7 +44,10 @@ public class CountingSort extends SortingAlgorithm{
 		
 		this.array = sortedList;
 		
-		return this.array;
+		return sortedList;
 	}
-
+	
+	public void setMaximum(int m) {
+		this.maximum = m;
+	}
 }
