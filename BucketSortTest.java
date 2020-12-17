@@ -7,14 +7,14 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class HeapSortTest {
+class BucketSortTest {
 
 	@Test
 	void sortTest() {
-		HeapSort array = new HeapSort();	
-		array.populating(1000, 1, 100);
+		BucketSort array = new BucketSort();	
+		array.populating(10000, 0, 100);
 		array.sort(array.getArray());
-		
+					
 		Assertions.assertEquals(true, array.isCorrect());
 	}
 
