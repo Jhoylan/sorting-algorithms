@@ -9,8 +9,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
-
 public class HttpConnection {
 
 	public List<String> getTagsCeps(String pageNumber){

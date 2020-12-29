@@ -12,10 +12,12 @@ class HeapSortTest {
 	@Test
 	void sortTest() {
 		HeapSort array = new HeapSort();	
-		array.populating(1000, 1, 100);
+		array.populating(10000, 1, 100);
 		array.sort(array.getArray());
 		
 		Assertions.assertEquals(true, array.isCorrect());
+		
+		
 	}
 
 }

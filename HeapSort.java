@@ -1,15 +1,17 @@
 package sortingAlgorithms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HeapSort extends SortingAlgorithm {
 
 	@Override
-	public List<Integer> sort(List<Integer> list) {
+	public List<Integer> sort(List<Integer> array) {
 		int firstSon = 0, secondSon = 0, firstSonPosition = 0, secondSonPosition = 0;
 		List<Integer> sortedArray = new ArrayList<>();
-
+		List<Integer> list = new ArrayList<>(array);
+		
 		while (list.size() > 0) {
 			boolean isMaxHeap = false;
 			int count = 0;
@@ -38,21 +40,18 @@ public class HeapSort extends SortingAlgorithm {
 							secondSon = 0;
 						}
 					}
-					
-					
+										
 					int parentPosition = Math.floorDiv(i + 1, 2) - 1;
 					int parent = list.get(parentPosition);
 
 					if (firstSon > parent || secondSon > parent) {
 						if (firstSon > secondSon) {
-							this.swap(list, firstSonPosition, parentPosition);
+							Collections.swap(list, firstSonPosition, parentPosition);
 						} else {
-							this.swap(list, secondSonPosition, parentPosition);
+							Collections.swap(list, secondSonPosition, parentPosition);
 						}
 						count++;
-					}
-					
-					
+					}					
 				}
 								
 				if (count == 0) {
@@ -61,10 +60,10 @@ public class HeapSort extends SortingAlgorithm {
 
 				count = 0;
 			}
-
+			
 			sortedArray.add(0, list.get(0));
 
-			this.swap(list, 0, list.size() - 1);
+			Collections.swap(list, 0, list.size() - 1);
 
 			list.remove(list.size() - 1);
 		}
@@ -72,11 +71,5 @@ public class HeapSort extends SortingAlgorithm {
 		this.array = sortedArray;
 		
 		return sortedArray;
-	}
-	
-	private void swap(List<Integer> list, int i, int j) {
-		int temp = list.get(i);
-		list.set(i, list.get(j));
-		list.set(j, temp);
 	}
 }

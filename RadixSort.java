@@ -34,9 +34,8 @@ public class RadixSort extends SortingAlgorithm{
 		List<Integer> sortedDigitList = new ArrayList<Integer>();
 		List<Integer> newDigitsPosition = new ArrayList<>();
 		
-		CountingSort countingSort = new CountingSort();
-		countingSort.setMaximum(9);
-		
+		CountingSort countingSort = new CountingSort(9);
+				
 		for(int i = 0; i < list.size(); i++) {
 			int digit = (Math.floorDiv(list.get(i), (int) Math.pow(10, digitPosition - 1))) % 10;
 			digitList.add(digit);
